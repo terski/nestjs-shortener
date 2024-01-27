@@ -15,6 +15,7 @@ import { readFileSync } from 'fs';
 class ShortenRequest {
   url: string;
 }
+
 @Controller()
 export class AppController {
   private _indexHtml: string;
