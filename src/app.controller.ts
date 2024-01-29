@@ -35,7 +35,7 @@ export class AppController {
   @Get('/')
   async index(@Res() res: Response) {
     res.setHeader('Content-Type', 'text/html');
-    return res.send(await this.indexHtml());
+    return res.send(`<html>${await this.indexHtml()}</html>`);
   }
 
   @Get('/:id')
@@ -57,13 +57,15 @@ export class AppController {
     const shortenedUrl = `${req.headers.host}/${id}`;
     const index = await this.indexHtml();
     const result = `
-      ${index}
-      <p>
-        Shortened URL:
-        <a href="${id}" rel="noopener noreferrer" target="_blank">
-          ${shortenedUrl}
-        </a>
-      </p>
+      <html>
+        ${index}
+        <p>
+          Shortened URL:
+          <a href="${id}" rel="noopener noreferrer" target="_blank">
+            ${shortenedUrl}
+          </a>
+        </p>
+      </html>
     `;
     res.setHeader('Content-Type', 'text/html');
     return res.send(result);
