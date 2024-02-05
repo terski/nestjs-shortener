@@ -38,7 +38,7 @@ export class AppController {
     return res.send(`<html>${await this.indexHtml()}</html>`);
   }
 
-  @Get('/:id')
+  @Get('/s/:id')
   async getUrl(@Param('id') id: string, @Res() res: Response) {
     const result = await this.appService.get(id);
     if (!result) {
@@ -54,14 +54,14 @@ export class AppController {
     @Body() body: ShortenRequest,
   ) {
     const id = await this.appService.shorten(body.url);
-    const shortenedUrl = `${req.headers.host}/${id}`;
+    const shortenedUrl = `${req.headers.host}/s/${id}`;
     const index = await this.indexHtml();
     const result = `
       <html>
         ${index}
         <p>
           Shortened URL:
-          <a href="${id}" rel="noopener noreferrer" target="_blank">
+          <a href="s/${id}" rel="noopener noreferrer" target="_blank">
             ${shortenedUrl}
           </a>
         </p>

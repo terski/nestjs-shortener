@@ -25,6 +25,22 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
+## Develop
+
+```bash
+# Update the database without creating a new migratino
+$ yarn prisma db push
+
+# Update the Prisma client code with the latest schema changes
+$ yarn prisma generate
+
+# Create a migration, apply it to the dev database, regenerate the client, and seed
+$ yarn prisma migrate dev
+
+# Drop and recreate the database, run all migrations, and seed
+$ yarn prisma migrate reset
+```
+
 ## Test
 
 ```bash
