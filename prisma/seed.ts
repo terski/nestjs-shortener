@@ -19,6 +19,14 @@ async function main() {
     },
   });
   console.log({ matt });
+  const artist = await prisma.artist.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
+      title: 'Matt',
+    },
+  });
+  console.log({ artist });
 }
 main()
   .then(async () => {
